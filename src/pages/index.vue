@@ -12,7 +12,7 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <!-- <div>
+  <div>
     <div text-4xl>
       <div i-carbon-campsite inline-block />
     </div>
@@ -53,7 +53,7 @@ const { t } = useI18n()
         {{ t('button.go') }}
       </button>
     </div>
-  </div> -->
+  </div>
 </template>
 
 <route lang="yaml">

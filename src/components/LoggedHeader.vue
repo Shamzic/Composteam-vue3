@@ -11,7 +11,15 @@ const toggleLocales = () => {
 <template>
   <nav text-xl mt-6>
     <RouterLink class="icon-btn mx-2" to="/" :title="t('button.home')">
-      <div i-carbon-campsite />
+      <div i-carbon-home />
+    </RouterLink>
+
+    <RouterLink class="icon-btn mx-2" to="/members" :title="t('button.members')">
+      <div i-carbon-user />
+    </RouterLink>
+
+    <RouterLink class="icon-btn mx-2" to="/login" :title="t('button.login')">
+      <div i-carbon-login />
     </RouterLink>
 
     <button class="icon-btn mx-2 !outline-none" :title="t('button.toggle_dark')" @click="toggleDark()">
@@ -26,7 +34,7 @@ const toggleLocales = () => {
       <div i-carbon-dicom-overlay />
     </RouterLink>
 
-    <a class="icon-btn mx-2" rel="noreferrer" href="https://github.com/antfu/vitesse" target="_blank" title="GitHub">
+    <a class="icon-btn mx-2" rel="noreferrer" href="https://github.com/shamzic/composteam-vue3" target="_blank" title="GitHub">
       <div i-carbon-logo-github />
     </a>
   </nav>

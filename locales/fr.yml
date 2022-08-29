@@ -1,5 +1,9 @@
 button:
   about: À propos
+  login: Connexion
+  logout: Déconnexion
+  members: membres
+  settings: paramètres
   back: Retour
   go: Essayer
   home: Accueil

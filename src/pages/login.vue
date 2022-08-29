@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const { t } = useI18n()
 const router = useRouter()
 const user = useUserStore()
@@ -10,22 +10,30 @@ const out = () => {
   user.setUserLog(null)
 }
 
-const showErrorMessage = $ref(false)
+let showErrorMessage = $ref(false)
 const loading = $ref(false)
 const userStore = useUserStore()
 const submit = async (e) => {
   e.preventDefault()
-  loading.value = true
-  const result = await signInUser(e.target[0].value, e.target[1].value)
+  loading = true
+  // const result = await signInUser(e.target[0].value, e.target[1].value)
+  const tempResult = {
+    user: {
+      name: e.target[0].value,
+      age: 27,
+      token: 'k7zed85fd85d8s',
+    },
+    errorCode: null,
+  }
   // console.log('result.user', result.user)
-  if (!result.errorCode) {
-    userStore.setUser(result.user)
-    router.push('/home')
+  if (!tempResult.errorCode) {
+    userStore.setUserLog(tempResult.user)
+    router.push('/')
   }
   else {
-    showErrorMessage.value = true
+    showErrorMessage = true
   }
-  loading.value = false
+  loading = false
 }
 </script>
 

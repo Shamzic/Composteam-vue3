@@ -75,6 +75,6 @@ const { t } = useI18n()
 </template>
 
 <route lang="yaml">
-meta:
-  layout: default
+# meta:
+#   layout: default
 </route>

@@ -11,7 +11,7 @@ const toggleLocales = () => {
 
 const logout = () => {
   // change to some real logic
-  user.setUserLog(null)
+  user.setUserAccessToken(null)
   router.push('/').catch((err) => {
     console.error(err)
   })

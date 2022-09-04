@@ -1,34 +1,39 @@
 <script setup lang="ts">
+import type { AxiosResponse } from 'axios'
+import axios from 'axios'
+
 const { t } = useI18n()
 const router = useRouter()
 const user = useUserStore()
 
 const go = () => {
-  user.setUserLog({ name: 'Simon', age: 27, token: 'k7zed85fd85d8s' })
+  user.setUserAccessToken({ name: 'Simon', age: 27, token: 'k7zed85fd85d8s' })
 }
 const out = () => {
-  user.setUserLog(null)
+  user.setUserAccessToken(null)
 }
 
 let showErrorMessage = $ref(false)
 const loading = $ref(false)
 const userStore = useUserStore()
+
 const submit = async (e) => {
   e.preventDefault()
   loading = true
-  // const result = await signInUser(e.target[0].value, e.target[1].value)
-  const tempResult = {
-    user: {
-      name: e.target[0].value,
-      age: 27,
-      token: 'k7zed85fd85d8s',
-    },
-    errorCode: null,
+  const params = {
+    username: e.target[0].value,
+    password: e.target[1].value,
   }
+  // const result = await signInUser(e.target[0].value, e.target[1].value)
+  const result: AxiosResponse = await axios.post('http://localhost:3000/login', params)
+
   // console.log('result.user', result.user)
-  if (!tempResult.errorCode) {
-    userStore.setUserLog(tempResult.user)
-    router.push('/')
+  if (result.status === 201) {
+    userStore.setUserData(result.data.user)
+    userStore.setUserAccessToken(result.data.access_token)
+    router.push('/').catch((err) => {
+      console.error(err)
+    })
   }
   else {
     showErrorMessage = true
